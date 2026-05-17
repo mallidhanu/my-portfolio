@@ -15,34 +15,34 @@ const experiences = [
       {
         project: "Notify Service – High-Availability Notification Gateway",
         achievements: [
-          "Scaled a robust, mission-critical notification backend processing over 50,000 requests per minute with zero message loss under peak loads.",
-          "Designed multi-channel SMS & Email gateway fallbacks with active-active redundant servers, mitigating downtime by 80% through automated Linux failover scripts.",
-          "Integrated Kafka logging pipelines and Prometheus monitoring to track delivery times and system loads, providing real-time diagnostics.",
+          "Scaled a performance-driven notification engine supporting 100,000+ users for mission-critical SMS and email alerts.",
+          "Executed custom authentication filters and request-logging mechanisms, managing 1M+ monthly operations with 99.99% reliability.",
+          "Mitigated system downtime by 80% through the deployment of high-availability response frameworks and Linux-based automated failovers.",
         ],
       },
       {
         project: "Enterprise API Gateway",
         achievements: [
-          "Architected a centralized API Gateway serving as the secure entry point for 12+ external Smart City vendors and service providers.",
-          "Formulated Spring Boot gateway layers with custom OAuth 2.0 / JWT middleware, rate-limiting rules, and IP whitelisting to protect core networks.",
-          "Achieved a 45% reduction in production vulnerability scores through comprehensive security auditing, Jenkins CI/CD integration, and SonarQube quality gates.",
-          "Successfully managed over 1 million monthly operations with a proven track record of 99.99% system availability.",
+          "Formulated a secure API Gateway using Spring Boot, serving as the single point of contact for 12+ third-party Smart City vendors, implementing OAuth 2.0 and JWT for authentication.",
+          "Architected API solutions with OAuth 2.0, JWT, and rate limiting, achieving an 45% reduction in vulnerabilities through robust security protocols.",
+          "Streamlined vendor integration by standardizing API interactions, leading to a 60% reduction in integration time for Smart City vendors like traffic management and public safety.",
+          "Standardized API communication protocols, which minimized cross-team integration friction by 50%.",
         ],
       },
       {
         project: "Industrial IoT Data Gateway",
         achievements: [
-          "Developed high-throughput Node-RED edge data gateways to bridge telemetric data streams from over 10,000 field IoT devices and industrial controllers.",
-          "Configured communication protocols like Modbus TCP, OPC UA, BACnet, and MQTT to standardize telemetry streams from edge sensors.",
-          "Engineered client-side queue buffers and intelligent JSON data filtering, saving 20% in database ingestion costs while reducing latency by 30%.",
+          "Developed a Node-RED data gateway that decreased end-to-end data latency by 30%, enabling real-time synchronization between industrial sensors and Java-based cloud backends.",
+          "Integrated industrial protocols including Modbus TCP, OPC UA, and BACnet, enabling bidirectional communication for over 10,000 edge devices.",
+          "Programmed custom JavaScript logic within Node-RED to perform edge-level data filtering, reducing cloud storage costs by 20%.",
         ],
       },
       {
-        project: "Digital Twinning & Real-Time Analytics",
+        project: "R&D: Digital Twinning & Real-Time Analytics",
         achievements: [
-          "Pioneered high-performance real-time telemetry processing products, boosting server rendering and peak load capacity by 20%.",
-          "Built interactive, real-time Angular visualization dashboards utilizing WebSockets for live GPS-based vehicle and sensor tracking.",
-          "Constructed Apache NiFi streaming pipelines connected to Kafka Streams to automate warning alarm dispatches, cutting emergency response times by 25%.",
+          "Pioneered a product design that boosted overall system performance by 20% and decreased operational costs by 15%.",
+          "Improved resource allocation accuracy by 25% through the implementation of a real-time tracking dashboard, ensuring zero downtime during high-priority incidents.",
+          "Achieved a 25% reduction in emergency response times by automating dispatch workflows and live sensor data streaming.",
         ],
       },
     ],
