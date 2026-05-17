@@ -1,107 +1,228 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
+import { Sparkles, Code2, Server, Database, Radio, Wrench } from "lucide-react"
 
 const skillCategories = [
   {
     title: "Languages & Frameworks",
-    skills: ["Java", "JavaScript", "TypeScript", "Spring Boot", "Angular", "HTML5", "CSS3"],
+    icon: Code2,
+    color: "text-[oklch(0.70_0.25_285)]",
+    bg: "bg-[oklch(0.70_0.25_285/0.1)]",
+    border: "border-[oklch(0.70_0.25_285/0.2)]",
+    skills: [
+      { name: "Java", level: 90 },
+      { name: "TypeScript", level: 85 },
+      { name: "Spring Boot", level: 92 },
+      { name: "Angular", level: 88 },
+      { name: "JavaScript", level: 88 },
+      { name: "HTML5 & CSS3", level: 85 },
+    ],
   },
   {
     title: "Backend & APIs",
-    skills: ["Hibernate", "JPA", "REST APIs", "OAuth 2.0", "JWT", "Node-RED", "Apache NiFi"],
+    icon: Server,
+    color: "text-[oklch(0.76_0.19_196)]",
+    bg: "bg-[oklch(0.76_0.19_196/0.1)]",
+    border: "border-[oklch(0.76_0.19_196/0.2)]",
+    skills: [
+      { name: "REST APIs", level: 95 },
+      { name: "OAuth 2.0 & JWT", level: 90 },
+      { name: "Hibernate & JPA", level: 88 },
+      { name: "Node-RED", level: 85 },
+      { name: "Apache NiFi", level: 85 },
+    ],
   },
   {
     title: "Databases & Storage",
-    skills: ["MySQL", "PostgreSQL", "Redis", "PouchDB"],
+    icon: Database,
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/10",
+    border: "border-emerald-500/20",
+    skills: [
+      { name: "PostgreSQL", level: 85 },
+      { name: "MySQL", level: 88 },
+      { name: "Redis", level: 88 },
+      { name: "PouchDB", level: 86 },
+    ],
   },
   {
     title: "IoT & Protocols",
-    skills: ["Modbus TCP", "OPC UA", "BACnet", "MQTT", "IoT Hub", "WebSockets", "Kafka Streams"],
+    icon: Radio,
+    color: "text-amber-400",
+    bg: "bg-amber-500/10",
+    border: "border-amber-500/20",
+    skills: [
+      { name: "Modbus TCP & OPC UA", level: 85 },
+      { name: "MQTT", level: 90 },
+      { name: "BACnet", level: 75 },
+      { name: "IoT Hub", level: 88 },
+      { name: "Kafka Streams", level: 87 },
+      { name: "WebSockets", level: 85 },
+    ],
   },
   {
     title: "DevOps & Tools",
-    skills: ["Docker", "Jenkins CI/CD", "Maven", "SVN", "Linux", "SonarQube", "JUnit Testing"],
+    icon: Wrench,
+    color: "text-rose-400",
+    bg: "bg-rose-500/10",
+    border: "border-rose-500/20",
+    skills: [
+      { name: "Docker", level: 82 },
+      { name: "Jenkins CI/CD", level: 80 },
+      { name: "Maven", level: 85 },
+      { name: "SonarQube", level: 85 },
+      { name: "JUnit Testing", level: 88 },
+      { name: "SVN & Git", level: 85 },
+    ],
   },
 ]
 
 export function SkillsSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <section id="skills" className="py-32 relative">
-      {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 blur-3xl rounded-full" />
+    <section id="skills" className="py-16 relative overflow-hidden">
+      {/* Visual background elements */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[oklch(0.70_0.25_285/0.03)] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-10 right-10 w-96 h-96 dot-pattern opacity-30 pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-6xl mx-auto"
         >
-          {/* Section Header */}
-          <div className="flex items-center gap-4 mb-16">
-            <span className="text-primary font-mono text-sm">03.</span>
-            <h2 className="text-3xl md:text-4xl font-bold">Skills & Technologies</h2>
-            <div className="flex-1 h-px bg-border" />
+          {/* Header */}
+          <div className="flex flex-col gap-3 mb-16">
+            <div>
+              <span className="section-label">03. Technology stack</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+              Skills & <span className="text-gradient-primary">Expertise</span>
+            </h2>
           </div>
 
-          {/* Skills Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skillCategories.map((category, catIndex) => (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-                className="glass rounded-2xl p-6 hover:bg-primary/5 transition-all duration-300"
-              >
-                <h3 className="text-lg font-semibold mb-4 text-primary">{category.title}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.span
-                      key={skill}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.3, delay: catIndex * 0.1 + skillIndex * 0.05 }}
-                      className="px-3 py-1.5 text-sm rounded-lg bg-secondary text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors cursor-default"
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
+          <div className="grid lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Left Column - Category Selectors */}
+            <div className="lg:col-span-5 flex flex-col gap-3">
+              {skillCategories.map((category, idx) => {
+                const Icon = category.icon
+                const isActive = activeTab === idx
+                return (
+                  <button
+                    key={category.title}
+                    onClick={() => setActiveTab(idx)}
+                    className={`flex items-center gap-4 p-4 rounded-xl text-left border transition-all duration-300 relative overflow-hidden ${
+                      isActive
+                        ? "glass border-primary/30 shadow-[0_8px_32px_oklch(0_0_0/0.05)]"
+                        : "bg-white/[0.01] hover:bg-white/[0.04] border-white/[0.05]"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-skill-bg"
+                        className="absolute inset-0 bg-primary/5 -z-10"
+                        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                      />
+                    )}
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${category.bg} ${category.color} ${category.border} border`}>
+                      <Icon size={18} />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className={`font-semibold text-base transition-colors ${isActive ? "text-foreground" : "text-muted-foreground"}`}>
+                        {category.title}
+                      </h3>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        {category.skills.length} core technologies
+                      </p>
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Right Column - Skill Visualizer (Dashboard style) */}
+            <div className="lg:col-span-7">
+              <div className="glass-card rounded-2xl p-6 md:p-8 border-gradient shadow-xl relative min-h-[420px] flex flex-col justify-between">
+                
+                {/* Visual Accent */}
+                <div className="absolute top-4 right-4 flex items-center gap-1.5 text-xs text-primary font-mono bg-primary/8 border border-primary/20 px-2.5 py-1 rounded-lg">
+                  <Sparkles size={11} className="animate-pulse" />
+                  Live Performance Metrics
                 </div>
-              </motion.div>
-            ))}
+
+                <div>
+                  <h4 className="text-lg font-bold text-foreground mb-1">
+                    {skillCategories[activeTab].title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground mb-8">
+                    Core competency levels measured through engineering implementation
+                  </p>
+
+                  <div className="space-y-6">
+                    {skillCategories[activeTab].skills.map((skill, index) => (
+                      <div key={skill.name} className="space-y-2">
+                        <div className="flex justify-between items-center text-sm font-mono">
+                          <span className="text-foreground font-semibold">{skill.name}</span>
+                          <span className="text-primary font-bold">{skill.level}%</span>
+                        </div>
+                        {/* Custom Animated Progress Bar */}
+                        <div className="skill-bar-track">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={isInView ? { width: `${skill.level}%` } : {}}
+                            transition={{ duration: 1, delay: index * 0.08, ease: "easeOut" }}
+                            className="skill-bar-fill"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-white/[0.06] text-xs text-muted-foreground font-mono flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  Continually updated based on enterprise and IoT workloads.
+                </div>
+
+              </div>
+            </div>
+
           </div>
 
-          {/* Additional Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
+          {/* Stats Bar */}
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { value: "3+", label: "Years Experience" },
-              { value: "1M+", label: "Monthly Operations" },
-              { value: "99.99%", label: "System Reliability" },
-              { value: "10K+", label: "Edge Devices" },
-            ].map((stat, index) => (
+              { value: "1M+", label: "Monthly API Operations" },
+              { value: "99.99%", label: "API Gateway Reliability" },
+              { value: "10K+", label: "Connected IoT Edge Devices" },
+            ].map((stat, idx) => (
               <div
                 key={stat.label}
-                className="text-center p-6 rounded-2xl glass"
+                className="text-center p-6 rounded-2xl glass border border-white/[0.06] hover:bg-white/[0.04] transition-colors"
               >
-                <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-3xl md:text-4xl font-extrabold text-gradient-primary mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                  {stat.label}
+                </div>
               </div>
             ))}
-          </motion.div>
+          </div>
+
         </motion.div>
       </div>
+
+      <div className="section-divider mt-16" />
     </section>
   )
 }

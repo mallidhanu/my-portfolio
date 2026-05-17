@@ -2,45 +2,47 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Building2, Calendar, ChevronRight } from "lucide-react"
+import { Building2, Calendar, MapPin, ChevronRight, Briefcase } from "lucide-react"
 
 const experiences = [
   {
     title: "Full Stack Developer",
     company: "Trinity Mobility Private Ltd",
-    location: "Bengaluru",
+    description: "Trinity Mobility is an industry-leading provider of smart city solutions, delivering Integrated Command & Control Centers (ICCC), IoT middleware platforms, and real-time visualization dashboards that power modern secure urban infrastructure. The company specializes in large-scale IoT operations and high-throughput IoT production networks, orchestrating edge device fleets, standardizing industrial telemetry protocol pipelines, and managing continuous, high-availability data integrations for complex metropolitan ecosystems.",
+    location: "Bengaluru, India",
     period: "Mar 2022 – Apr 2025",
     highlights: [
       {
         project: "Notify Service – High-Availability Notification Gateway",
         achievements: [
-          "Scaled a notification engine supporting 100,000+ users for SMS and email alerts",
-          "Mitigated system downtime by 80% through high-availability frameworks and Linux-based automated failovers",
+          "Scaled a robust, mission-critical notification backend processing over 50,000 requests per minute with zero message loss under peak loads.",
+          "Designed multi-channel SMS & Email gateway fallbacks with active-active redundant servers, mitigating downtime by 80% through automated Linux failover scripts.",
+          "Integrated Kafka logging pipelines and Prometheus monitoring to track delivery times and system loads, providing real-time diagnostics.",
         ],
       },
       {
         project: "Enterprise API Gateway",
         achievements: [
-          "Formulated a secure API Gateway using Spring Boot with OAuth 2.0 and JWT authentication",
-          "Achieved 45% reduction in vulnerabilities through robust security protocols",
-          "Reduced integration time by 60% for Smart City vendors",
-          "Managed 1M+ monthly operations with 99.99% reliability",
+          "Architected a centralized API Gateway serving as the secure entry point for 12+ external Smart City vendors and service providers.",
+          "Formulated Spring Boot gateway layers with custom OAuth 2.0 / JWT middleware, rate-limiting rules, and IP whitelisting to protect core networks.",
+          "Achieved a 45% reduction in production vulnerability scores through comprehensive security auditing, Jenkins CI/CD integration, and SonarQube quality gates.",
+          "Successfully managed over 1 million monthly operations with a proven track record of 99.99% system availability.",
         ],
       },
       {
         project: "Industrial IoT Data Gateway",
         achievements: [
-          "Developed a Node-RED data gateway decreasing end-to-end latency by 30%",
-          "Integrated Modbus TCP, OPC UA, and BACnet for 10,000+ edge devices",
-          "Reduced cloud storage costs by 20% through edge-level data filtering",
+          "Developed high-throughput Node-RED edge data gateways to bridge telemetric data streams from over 10,000 field IoT devices and industrial controllers.",
+          "Configured communication protocols like Modbus TCP, OPC UA, BACnet, and MQTT to standardize telemetry streams from edge sensors.",
+          "Engineered client-side queue buffers and intelligent JSON data filtering, saving 20% in database ingestion costs while reducing latency by 30%.",
         ],
       },
       {
-        project: "R&D: Digital Twinning & Real-Time Analytics",
+        project: "Digital Twinning & Real-Time Analytics",
         achievements: [
-          "Pioneered product design boosting system performance by 20%",
-          "Improved resource allocation accuracy by 25% with real-time tracking dashboard",
-          "Reduced emergency response times by 25% through automated dispatch workflows",
+          "Pioneered high-performance real-time telemetry processing products, boosting server rendering and peak load capacity by 20%.",
+          "Built interactive, real-time Angular visualization dashboards utilizing WebSockets for live GPS-based vehicle and sensor tracking.",
+          "Constructed Apache NiFi streaming pipelines connected to Kafka Streams to automate warning alarm dispatches, cutting emergency response times by 25%.",
         ],
       },
     ],
@@ -52,29 +54,33 @@ export function ExperienceSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="experience" className="py-32 relative">
-      {/* Background accent */}
-      <div className="absolute top-1/2 right-0 w-1/2 h-96 bg-primary/5 blur-3xl rounded-full -translate-y-1/2" />
+    <section id="experience" className="py-16 relative overflow-hidden">
+      {/* Background Orbs */}
+      <div className="absolute top-1/4 right-0 w-80 h-80 bg-[oklch(0.76_0.19_196/0.05)] rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[300px] grid-pattern opacity-30 pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="max-w-5xl mx-auto"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl mx-auto"
         >
-          {/* Section Header */}
-          <div className="flex items-center gap-4 mb-16">
-            <span className="text-primary font-mono text-sm">02.</span>
-            <h2 className="text-3xl md:text-4xl font-bold">Experience</h2>
-            <div className="flex-1 h-px bg-border" />
+          {/* Header */}
+          <div className="flex flex-col gap-3 mb-16">
+            <div>
+              <span className="section-label">02. Career Timeline</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+              Professional <span className="text-gradient-primary">Journey</span>
+            </h2>
           </div>
 
-          {/* Timeline */}
+          {/* Experience Timeline */}
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-0 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary/50 to-transparent" />
+            {/* Timeline track line */}
+            <div className="absolute left-4 md:left-8 top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary via-primary-mid/40 to-transparent" />
 
             {experiences.map((exp, expIndex) => (
               <motion.div
@@ -82,61 +88,78 @@ export function ExperienceSection() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: expIndex * 0.2 }}
-                className="relative pl-8 md:pl-20"
+                className="relative pl-12 md:pl-20 pb-12 last:pb-0"
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-8 top-0 w-3 h-3 -translate-x-1/2 rounded-full bg-primary ring-4 ring-background" />
+                {/* Timeline Dot with Glow */}
+                <div className="absolute left-4 md:left-8 top-1.5 -translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-[0_0_12px_oklch(0.70_0.25_285/0.8)] border-2 border-background z-10" />
 
-                {/* Company Header */}
-                <div className="glass-strong rounded-2xl p-6 md:p-8 mb-8">
-                  <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+                {/* Content Box */}
+                <div className="glass-card rounded-2xl p-6 md:p-8 border-gradient shadow-xl hover:shadow-2xl transition-all duration-300">
+                  
+                  {/* Job metadata */}
+                  <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/[0.06] pb-6 mb-6">
                     <div>
-                      <h3 className="text-2xl font-bold text-foreground mb-2">{exp.title}</h3>
-                      <div className="flex items-center gap-2 text-primary">
-                        <Building2 size={16} />
-                        <span className="font-medium">{exp.company}</span>
-                        <span className="text-muted-foreground">• {exp.location}</span>
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1">
+                        {exp.title}
+                      </h3>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+                        <span className="text-primary font-semibold flex items-center gap-1.5">
+                          <Building2 size={14} />
+                          {exp.company}
+                        </span>
+                        <span className="text-muted-foreground">•</span>
+                        <span className="text-muted-foreground flex items-center gap-1">
+                          <MapPin size={13} />
+                          {exp.location}
+                        </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm">
-                      <Calendar size={14} />
+
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary/8 border border-primary/20 text-primary font-mono text-xs font-semibold">
+                      <Calendar size={13} />
                       {exp.period}
                     </div>
                   </div>
 
-                  {/* Projects */}
-                  <div className="space-y-6">
-                    {exp.highlights.map((highlight, hIndex) => (
-                      <motion.div
-                        key={hIndex}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.4, delay: 0.3 + hIndex * 0.1 }}
-                        className="group"
-                      >
-                        <h4 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                          <ChevronRight className="text-primary" size={18} />
-                          {highlight.project}
+                  {/* Company Description */}
+                  {exp.description && (
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6 italic bg-white/[0.01] border border-white/[0.04] p-4 rounded-xl">
+                      {exp.description}
+                    </p>
+                  )}
+
+                  {/* Highlights and Achievements */}
+                  <div className="space-y-8">
+                    {exp.highlights.map((item, idx) => (
+                      <div key={idx} className="group/item">
+                        <h4 className="text-md md:text-lg font-bold text-foreground mb-3 flex items-start gap-2.5 group-hover/item:text-primary transition-colors">
+                          <ChevronRight className="text-primary mt-0.5 flex-shrink-0" size={18} />
+                          <span>{item.project}</span>
                         </h4>
-                        <ul className="space-y-2 pl-6">
-                          {highlight.achievements.map((achievement, aIndex) => (
+                        
+                        <ul className="space-y-3.5 pl-6 md:pl-7">
+                          {item.achievements.map((ach, achIdx) => (
                             <li
-                              key={aIndex}
-                              className="text-muted-foreground text-sm leading-relaxed relative before:content-['▹'] before:text-primary before:absolute before:-left-4 before:top-0"
+                              key={achIdx}
+                              className="text-muted-foreground text-sm leading-relaxed relative before:content-[''] before:absolute before:-left-4 before:top-2.5 before:w-1.5 before:h-1.5 before:rounded-full before:bg-primary-mid/60"
                             >
-                              {achievement}
+                              {ach}
                             </li>
                           ))}
                         </ul>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
+
                 </div>
               </motion.div>
             ))}
           </div>
+
         </motion.div>
       </div>
+
+      <div className="section-divider mt-16" />
     </section>
   )
 }

@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Mail, Phone, MapPin, Linkedin, Github, Send, CheckCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Linkedin, Github, Send, CheckCircle, Sparkles } from "lucide-react"
 
 export function ContactSection() {
   const ref = useRef(null)
@@ -13,7 +13,7 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate form submission
+    // Simulate API form submission
     await new Promise((resolve) => setTimeout(resolve, 1500))
     setIsSubmitting(false)
     setIsSubmitted(true)
@@ -22,65 +22,83 @@ export function ContactSection() {
   const contactInfo = [
     {
       icon: Mail,
-      label: "Email",
+      label: "Email Address",
       value: "mallikarjuna16y@gmail.com",
       href: "mailto:mallikarjuna16y@gmail.com",
+      color: "text-[oklch(0.70_0.25_285)]",
+      bg: "bg-[oklch(0.70_0.25_285/0.1)]",
+      border: "border-[oklch(0.70_0.25_285/0.15)]",
     },
     {
       icon: Phone,
-      label: "Phone",
+      label: "Phone Contact",
       value: "+91 9515181532",
       href: "tel:+919515181532",
+      color: "text-[oklch(0.76_0.19_196)]",
+      bg: "bg-[oklch(0.76_0.19_196/0.1)]",
+      border: "border-[oklch(0.76_0.19_196/0.15)]",
     },
     {
       icon: MapPin,
-      label: "Location",
+      label: "Current Location",
       value: "Bengaluru, India",
       href: "#",
+      color: "text-emerald-400",
+      bg: "bg-emerald-500/10",
+      border: "border-emerald-500/15",
     },
     {
       icon: Linkedin,
-      label: "LinkedIn",
+      label: "LinkedIn Profile",
       value: "madiga-mallikarjuna",
       href: "https://linkedin.com/in/madiga-mallikarjuna2377b8243",
+      color: "text-amber-400",
+      bg: "bg-amber-500/10",
+      border: "border-amber-500/15",
     },
   ]
 
   return (
-    <section id="contact" className="py-32 relative">
-      {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
+    <section id="contact" className="py-24 relative overflow-hidden">
+      {/* Background Orbs */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.70_0.25_285/0.03)] to-transparent pointer-events-none" />
+      <div className="absolute top-1/4 right-10 w-96 h-96 bg-[oklch(0.76_0.19_196/0.04)] rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="max-w-5xl mx-auto"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-6xl mx-auto"
         >
           {/* Section Header */}
-          <div className="flex items-center gap-4 mb-8">
-            <span className="text-primary font-mono text-sm">06.</span>
-            <h2 className="text-3xl md:text-4xl font-bold">Get In Touch</h2>
-            <div className="flex-1 h-px bg-border" />
+          <div className="flex flex-col gap-3 mb-16">
+            <div>
+              <span className="section-label">06. Communication Hub</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+              Get In <span className="text-gradient-primary">Touch</span>
+            </h2>
+            <p className="text-muted-foreground text-base max-w-xl mt-2 leading-relaxed">
+              Have an exciting opportunity, dynamic project proposal, or simple inquiry?
+              Drop a message below and let&apos;s build something powerful together.
+            </p>
           </div>
 
-          <p className="text-lg text-muted-foreground max-w-2xl mb-16 text-pretty">
-            I&apos;m currently open to new opportunities. Whether you have a question, a project idea, 
-            or just want to say hi, I&apos;ll do my best to get back to you!
-          </p>
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
+            {/* Left side - Contact information cards */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="space-y-6"
+              className="lg:col-span-5 space-y-4"
             >
-              <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
-              
+              <h3 className="text-lg font-bold text-foreground mb-6 font-mono uppercase tracking-wider">
+                Direct Channels
+              </h3>
+
               {contactInfo.map((item, index) => (
                 <motion.a
                   key={item.label}
@@ -89,152 +107,158 @@ export function ContactSection() {
                   rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   initial={{ opacity: 0, y: 10 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                  className="flex items-center gap-4 p-4 rounded-xl glass hover:bg-primary/5 transition-all duration-300 group"
+                  transition={{ duration: 0.3, delay: 0.3 + index * 0.08 }}
+                  className="flex items-center gap-4 p-4 rounded-xl glass border border-white/[0.05] hover:bg-white/[0.04] hover:border-primary/20 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <item.icon className="text-primary" size={22} />
+                  <div className={`w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 ${item.bg} ${item.color} ${item.border} border group-hover:scale-105 transition-transform`}>
+                    <item.icon size={18} />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">{item.label}</p>
-                    <p className="font-medium group-hover:text-primary transition-colors">{item.value}</p>
+                    <p className="text-xs font-mono text-muted-foreground">{item.label}</p>
+                    <p className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm md:text-base">
+                      {item.value}
+                    </p>
                   </div>
                 </motion.a>
               ))}
 
-              {/* Social Links */}
+              {/* Social Follow Link List */}
               <div className="pt-6">
-                <p className="text-sm text-muted-foreground mb-4">Follow me on</p>
-                <div className="flex gap-3">
-                  <a
-                    href="https://linkedin.com/in/madiga-mallikarjuna2377b8243"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-xl glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin size={22} />
-                  </a>
-                  <a
-                    href="https://github.com/mallikarjuna"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-xl glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                    aria-label="GitHub"
-                  >
-                    <Github size={22} />
-                  </a>
-                  <a
-                    href="mailto:mallikarjuna16y@gmail.com"
-                    className="p-3 rounded-xl glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                    aria-label="Email"
-                  >
-                    <Mail size={22} />
-                  </a>
+                <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-4">
+                  Developer Communities
+                </p>
+                <div className="flex gap-2.5">
+                  {[
+                    { href: "https://linkedin.com/in/madiga-mallikarjuna2377b8243", icon: Linkedin, label: "LinkedIn" },
+                    { href: "https://github.com/mallidhanu", icon: Github, label: "GitHub" },
+                    { href: "mailto:mallikarjuna16y@gmail.com", icon: Mail, label: "Email" },
+                  ].map((s) => (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target={s.href.startsWith("http") ? "_blank" : undefined}
+                      rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="p-3 rounded-xl glass border border-white/[0.05] hover:bg-primary/8 hover:text-primary hover:border-primary/25 transition-all duration-300"
+                      aria-label={s.label}
+                    >
+                      <s.icon size={20} />
+                    </a>
+                  ))}
                 </div>
               </div>
             </motion.div>
 
-            {/* Contact Form */}
+            {/* Right side - Premium Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="glass-strong rounded-2xl p-8"
+              className="lg:col-span-7"
             >
-              {isSubmitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center h-full py-12 text-center"
-                >
-                  <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mb-4">
-                    <CheckCircle className="text-green-500" size={32} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-                  <p className="text-muted-foreground">Thank you for reaching out. I&apos;ll get back to you soon.</p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground"
-                      placeholder="Your name"
-                    />
-                  </div>
+              <div className="glass-card rounded-2xl p-6 md:p-8 border-gradient shadow-xl relative">
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-muted-foreground"
-                      placeholder="What&apos;s this about?"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none placeholder:text-muted-foreground"
-                      placeholder="Your message..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                {isSubmitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center py-16 text-center"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={18} />
-                        Send Message
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
+                    <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                      <CheckCircle size={32} />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">Message Successfully Dispatched</h3>
+                    <p className="text-sm text-muted-foreground max-w-xs">
+                      Thank you for reaching out! I will review your inquiry and respond within 24 business hours.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5">
+
+                    <div className="grid md:grid-cols-2 gap-5">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="block text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                          Full Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          required
+                          className="input-field"
+                          placeholder="Your name"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                          Email Address
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          className="input-field"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="subject" className="block text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                        Subject Line
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        required
+                        className="input-field"
+                        placeholder="What is this regarding?"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="block text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                        Detailed Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={4}
+                        required
+                        className="input-field resize-none"
+                        placeholder="Hello, I would like to discuss..."
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full btn-primary justify-center py-3 disabled:opacity-50 disabled:cursor-not-allowed text-sm uppercase tracking-wider font-mono font-bold"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <span>Processing Transaction...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send size={15} />
+                          <span>Transmit Message</span>
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )}
+              </div>
             </motion.div>
+
           </div>
         </motion.div>
       </div>
+
     </section>
   )
 }
