@@ -17,11 +17,11 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Madiga Mallikarjuna | Full Stack Developer',
+  title: 'Madiga Mallikarjuna | Java Full Stack Developer',
   description:
     'Performance-driven Java Full Stack Developer with 3+ years of experience building Smart City and IoT-based enterprise applications. Expert in Java, Spring Boot, Angular, and Node-RED.',
   keywords: [
-    'Full Stack Developer',
+    'Java Full Stack Developer',
     'Java Developer',
     'Spring Boot',
     'Angular',

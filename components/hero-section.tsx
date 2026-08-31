@@ -5,7 +5,7 @@ import { Download, Mail, Linkedin, Github } from "lucide-react"
 import { useEffect, useState } from "react"
 
 const roles = [
-  "Full Stack Developer",
+  "Java Full Stack Developer",
   "Java & Spring Boot Expert",
   "IoT Systems Architect",
   "API Gateway Engineer",

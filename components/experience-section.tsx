@@ -6,7 +6,7 @@ import { Building2, Calendar, MapPin, ChevronRight, Briefcase } from "lucide-rea
 
 const experiences = [
   {
-    title: "Full Stack Developer",
+    title: "Java Full Stack Developer",
     company: "Trinity Mobility Private Ltd",
     description: "Trinity Mobility is an industry-leading provider of smart city solutions, delivering Integrated Command & Control Centers (ICCC), IoT middleware platforms, and real-time visualization dashboards that power modern secure urban infrastructure. The company specializes in large-scale IoT operations and high-throughput IoT production networks, orchestrating edge device fleets, standardizing industrial telemetry protocol pipelines, and managing continuous, high-availability data integrations for complex metropolitan ecosystems.",
     location: "Bengaluru, India",
